@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
                             selectedFragment).commit();
                     Log.d("TEST",bundle_Login.toString());
+                    Log.d("TEST",bundle_Login.toString());
                 }
             }
         }
