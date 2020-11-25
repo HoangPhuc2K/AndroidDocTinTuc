@@ -80,7 +80,6 @@
         android:text="Chưa có tài khoản? Tạo tài khoản"
         android:onClick="TaoTaiKhoan"
         android:layout_marginTop="20dp"
-
         android:textColor="#FFFFFF"
         app:layout_constraintHorizontal_bias="0.79"
         app:layout_constraintLeft_toLeftOf="@+id/login_Password"
@@ -96,7 +95,6 @@
         android:layout_marginRight="30dp"
         android:backgroundTint="#FFFFFF"
         android:onClick="logIn"
-
         android:text="Đăng Nhập"
         android:textColor="#009688"
         app:layout_constraintLeft_toLeftOf="@id/login_Password"

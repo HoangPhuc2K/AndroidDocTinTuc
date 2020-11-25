@@ -24,17 +24,16 @@
         android:id="@+id/Signup_Username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#ffffff"
-        android:hint="  Tài Khoản"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
+        android:backgroundTint="#ffffff"
+        android:drawableLeft="@drawable/user"
+        android:hint="  Tài Khoản"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/Signup_LoginText"
         app:layout_constraintStart_toStartOf="@+id/Signup_LoginText"
-        app:layout_constraintTop_toBottomOf="@+id/Signup_LoginText"
-        android:drawableLeft="@drawable/user"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/Signup_LoginText" />
 
     <EditText
         android:id="@+id/Signup_Password"
@@ -79,6 +78,7 @@
         android:layout_marginRight="30dp"
         android:backgroundTint="#FFFFFF"
         android:text="Đăng Kí"
+        android:onClick="UserSignup"
         android:textColor="#009688"
         app:layout_constraintLeft_toLeftOf="@id/Signup_Password"
         app:layout_constraintRight_toRightOf="@id/Signup_Password"

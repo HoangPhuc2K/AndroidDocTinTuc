@@ -74,11 +74,11 @@ public class UserFragment extends Fragment {
         editor = sharedPreferences.edit();
     }
 
-    public void User_Login(View view){
+    public void UserLogin(View view){
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivityForResult(intent,LOGIN_REQUEST);
     }
-    public void User_Logout(View view){
+    public void UserLogout(View view){
         txtUser_Login.setText("Đăng Nhập");
         txtUser_Login.setEnabled(true);
         editor.clear();

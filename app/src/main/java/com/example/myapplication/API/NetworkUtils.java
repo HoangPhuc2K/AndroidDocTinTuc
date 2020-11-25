@@ -1,7 +1,10 @@
 package com.example.myapplication.API;
 
 import android.net.Uri;
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +21,22 @@ public class NetworkUtils {
                 .appendQueryParameter("Password",password)
                 .build();
         Log.d("TEST_LOG",builtURI.toString());
+        try {
+            URL requestURL = new URL(builtURI.toString());
+            return callAPI(requestURL, "POST");
+        } catch (MalformedURLException e) {
+            return null;
+        }
+    }
+    public static String singUp(String username, String password) {
+        Uri builtURI = Uri.parse("http://10.0.2.2:8000/api/Member/store?").buildUpon()
+                .appendQueryParameter("Username",username)
+                .appendQueryParameter("Password",password)
+                .appendQueryParameter("Email","@")
+                .appendQueryParameter("FullName",username)
+                .appendQueryParameter("RegisterDate", "25/11")
+                .build();
+        Log.d("TEST_SIGUP",builtURI.toString());
         try {
             URL requestURL = new URL(builtURI.toString());
             return callAPI(requestURL, "POST");

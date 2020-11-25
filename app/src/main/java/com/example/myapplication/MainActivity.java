@@ -1,5 +1,4 @@
 package com.example.myapplication;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -72,10 +71,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                         case R.id.action_trend:
                             selectedFragment = new TrendFragment();
                             break;
-                        case R.id.action_user: {
+                        case R.id.action_user:
                             selectedFragment = new UserFragment();
-
-                        }
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
@@ -84,12 +81,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 }
             };
 
-    public void User_Login(View view){
+    public void UserLogin(View view){
         Intent intent = new Intent(this, LoginActivity.class);
         startActivityForResult(intent,LOGIN_REQUEST);
     }
-    public void User_Logout(View view){
-        ((UserFragment) selectedFragment).User_Logout(view);
+    public void UserLogout(View view){
+        ((UserFragment) selectedFragment).UserLogout(view);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

@@ -86,4 +86,5 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     public void onLoadCanceled(@NonNull Loader<LinkedList<User>> loader) {
 
     }
+
 }
