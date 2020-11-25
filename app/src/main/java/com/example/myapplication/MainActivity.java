@@ -30,8 +30,8 @@ import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<LinkedList<New>>, Loader.OnLoadCanceledListener<LinkedList<New>> {
     private BottomNavigationView bottomNavigationView;
-    private String USER_NAME = null ;
     private static final int LOGIN_REQUEST = 1;
+    public static String USER_NAME = "USERNAME";
     DrawerLayout drawerLayout;
     Fragment selectedFragment = null;
     LoaderManager loaderManager;
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                             break;
                         case R.id.action_user: {
                             selectedFragment = new UserFragment();
-                            UserFragment.Name = USER_NAME;
+
                         }
                             break;
                     }
@@ -88,21 +88,24 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Intent intent = new Intent(this, LoginActivity.class);
         startActivityForResult(intent,LOGIN_REQUEST);
     }
+    public void User_Logout(View view){
+        ((UserFragment) selectedFragment).User_Logout(view);
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == LOGIN_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Bundle bundle = data.getExtras();
-                USER_NAME = bundle.getString(LoginActivity.MAIN_REPLY);
-                if(USER_NAME != null) {
+                String userName = bundle.getString(LoginActivity.MAIN_REPLY);
+                Log.d("TEST",userName);
+                if(userName != null) {
                     Bundle bundle_Login = new Bundle();
-                    bundle_Login.putString(LoginActivity.MAIN_REPLY, USER_NAME);
+                    bundle_Login.putString(USER_NAME, userName);
                     selectedFragment = new UserFragment();
                     selectedFragment.setArguments(bundle_Login);
                     getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container,
                             selectedFragment).commit();
-                    Log.d("TEST",bundle_Login.toString());
                     Log.d("TEST",bundle_Login.toString());
                 }
             }

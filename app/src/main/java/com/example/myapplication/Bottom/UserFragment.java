@@ -1,11 +1,14 @@
 package com.example.myapplication.Bottom;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.ShareActionProvider;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.myapplication.Login.LoginActivity;
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
 /**
@@ -22,12 +26,14 @@ import com.example.myapplication.R;
  */
 public class UserFragment extends Fragment {
 
-    public static String Name = null;
+    public static String USER_NAME = "username";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private TextView textView;
+    private TextView txtUser_Login;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
     private String UserName;
     private static final int LOGIN_REQUEST = 1;
 
@@ -64,22 +70,37 @@ public class UserFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        editor = sharedPreferences.edit();
     }
 
     public void User_Login(View view){
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivityForResult(intent,LOGIN_REQUEST);
     }
+    public void User_Logout(View view){
+        txtUser_Login.setText("Đăng Nhập");
+        txtUser_Login.setEnabled(true);
+        editor.clear();
+        editor.commit();
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View item = inflater.inflate(R.layout.fragment_user,container,false);
-        textView = item.findViewById(R.id.txt_DangNhap);
+        txtUser_Login = item.findViewById(R.id.txt_DangNhap);
         Bundle bundle = getArguments();
-        if(bundle != null){
-           UserName = bundle.getString(LoginActivity.MAIN_REPLY);
-            Log.d("TEST_LOGGg",textView.getText().toString());
-            textView.setText(UserName);
+        if(bundle != null) {
+            String userName = bundle.getString(MainActivity.USER_NAME);
+            Log.d("TEST_USER",userName);
+            editor.putString(USER_NAME,userName);
+            editor.commit();
+        }
+        if(sharedPreferences != null && sharedPreferences.getString(USER_NAME,"").length() > 0){
+            String userName = sharedPreferences.getString(USER_NAME,"");
+            Log.d("TEST_USER",userName);
+            txtUser_Login.setText(userName);
+            txtUser_Login.setEnabled(false);
         }
         // Inflate the layout for this fragment
         return item;
