@@ -10,13 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.example.myapplication.AsyncTaskLoader.UserSingup;
+import com.example.myapplication.AsyncTaskLoader.SingupLoader;
 import com.example.myapplication.R;
-import com.example.myapplication.data.model.User;
-
-import java.util.LinkedList;
 
 public class SignupActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String>, Loader.OnLoadCanceledListener<String> {
 
@@ -38,30 +34,6 @@ public class SignupActivity extends AppCompatActivity implements LoaderManager.L
     }
 
 
-    @NonNull
-    @Override
-    public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
-        Log.d("TEST","DASDAS");
-        return new UserSingup(this,UserName,Password);
-    }
-
-    @Override
-    public void onLoadFinished(@NonNull Loader<String> loader, String data) {
-        if(data.length() > 0 && data != null){
-            Log.d("TEST_SINGUP",data);
-        }
-    }
-
-    @Override
-    public void onLoaderReset(@NonNull Loader<String> loader) {
-
-    }
-
-    @Override
-    public void onLoadCanceled(@NonNull Loader<String> loader) {
-
-    }
-
     public void UserSignup(View view) {
         UserName = editUserName.getText().toString();
         Password = editPassword.getText().toString();
@@ -74,5 +46,25 @@ public class SignupActivity extends AppCompatActivity implements LoaderManager.L
             loader = loaderManager.restartLoader(SIGNUP, null, this);
         }
         loader.registerOnLoadCanceledListener(this);
+    }
+
+    @NonNull
+    @Override
+    public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
+        return new SingupLoader(this,UserName,Password);
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<String> loader, String data) {
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<String> loader) {
+
+    }
+
+    @Override
+    public void onLoadCanceled(@NonNull Loader<String> loader) {
+
     }
 }

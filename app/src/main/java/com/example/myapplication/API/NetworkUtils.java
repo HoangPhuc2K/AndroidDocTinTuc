@@ -23,23 +23,23 @@ public class NetworkUtils {
         Log.d("TEST_LOG",builtURI.toString());
         try {
             URL requestURL = new URL(builtURI.toString());
-            return callAPI(requestURL, "POST");
+            return callAPI(requestURL, "GET");
         } catch (MalformedURLException e) {
             return null;
         }
     }
     public static String singUp(String username, String password) {
-        Uri builtURI = Uri.parse("http://10.0.2.2:8000/api/Member/store?").buildUpon()
-                .appendQueryParameter("Username",username)
+        Uri builtURI = Uri.parse("http://10.0.2.2:8000/api/Member/SingUp?").buildUpon()
+                .appendQueryParameter("Usemember",username)
                 .appendQueryParameter("Password",password)
-                .appendQueryParameter("Email","@")
-                .appendQueryParameter("FullName",username)
-                .appendQueryParameter("RegisterDate", "25/11")
+                .appendQueryParameter("Email","adsd")
+                .appendQueryParameter("Fullname",username)
                 .build();
         Log.d("TEST_SIGUP",builtURI.toString());
         try {
             URL requestURL = new URL(builtURI.toString());
-            return callAPI(requestURL, "POST");
+            Log.d("TEST_SIGUP",builtURI.toString());
+            return callAPI(requestURL, "GET");
         } catch (MalformedURLException e) {
             return null;
         }
@@ -50,7 +50,8 @@ public class NetworkUtils {
         Log.d("TEST_LOG",builtURI.toString());
         try {
             URL requestURL = new URL(builtURI.toString());
-            return callAPI(requestURL, "GET");
+            Log.d("TEST_LOG",requestURL.toString());
+            return callAPI(requestURL, "POST");
         } catch (MalformedURLException e) {
             return null;
         }
@@ -66,6 +67,7 @@ public class NetworkUtils {
             // Get the InputStream.
             InputStream inputStream = urlConnection.getInputStream();
             result = convertISToString(inputStream);
+            Log.d("TEST_SIGUP",result);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
