@@ -78,7 +78,7 @@
         android:layout_marginRight="30dp"
         android:backgroundTint="#FFFFFF"
         android:text="Đăng Kí"
-        android:onClick="UserSignup"
+        android:onClick="singUp"
         android:textColor="#009688"
         app:layout_constraintLeft_toLeftOf="@id/Signup_Password"
         app:layout_constraintRight_toRightOf="@id/Signup_Password"
