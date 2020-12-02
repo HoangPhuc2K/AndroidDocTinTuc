@@ -28,8 +28,22 @@ public class NetworkUtils {
             return null;
         }
     }
-
-
+    public static String singUp(String username, String password) {
+        Uri builtURI = Uri.parse("http://10.0.2.2:8000/api/Member/SingUp?").buildUpon()
+                .appendQueryParameter("Usemember",username)
+                .appendQueryParameter("Password",password)
+                .appendQueryParameter("Email","adsd")
+                .appendQueryParameter("Fullname",username)
+                .build();
+        Log.d("TEST_SIGUP",builtURI.toString());
+        try {
+            URL requestURL = new URL(builtURI.toString());
+            Log.d("TEST_SIGUP",builtURI.toString());
+            return callAPI(requestURL, "POST");
+        } catch (MalformedURLException e) {
+            return null;
+        }
+    }
     public static String loadListNew() {
         Uri builtURI = Uri.parse("http://10.0.2.2:8000/api/News").buildUpon()
                 .build();
@@ -53,6 +67,7 @@ public class NetworkUtils {
             // Get the InputStream.
             InputStream inputStream = urlConnection.getInputStream();
             result = convertISToString(inputStream);
+            Log.d("TEST_SIGUP",result);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
