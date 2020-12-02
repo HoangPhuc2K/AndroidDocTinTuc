@@ -1,6 +1,6 @@
 package com.example.myapplication.data.model;
 
-public class New {
+public class News {
     private int IdNews;
     private String Title;
     private String Description;
@@ -47,7 +47,7 @@ public class New {
         return Picture;
     }
 
-    public New(int idNews, String title, String description, String author, String picture) {
+    public News(int idNews, String title, String description, String author, String picture) {
         IdNews = idNews;
         Title = title;
         Description = description;

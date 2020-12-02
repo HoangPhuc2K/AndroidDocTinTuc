@@ -21,13 +21,12 @@ import com.example.myapplication.Bottom.TrendFragment;
 import com.example.myapplication.Bottom.UserFragment;
 import com.example.myapplication.Bottom.VideoFragment;
 import com.example.myapplication.Login.LoginActivity;
-import com.example.myapplication.data.model.New;
-import com.example.myapplication.data.model.User;
+import com.example.myapplication.data.model.News;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.LinkedList;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<LinkedList<New>>, Loader.OnLoadCanceledListener<LinkedList<New>> {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<LinkedList<News>>, Loader.OnLoadCanceledListener<LinkedList<News>> {
     private BottomNavigationView bottomNavigationView;
     private static final int LOGIN_REQUEST = 1;
     public static String USER_NAME = "USERNAME";
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
         txtUserName = findViewById(R.id.txt_DangNhap);
         loaderManager = LoaderManager.getInstance(this);
-        Loader<LinkedList<New>> loader =  loaderManager.getLoader(NEW_ID);
+        Loader<LinkedList<News>> loader =  loaderManager.getLoader(NEW_ID);
         if (loader == null) {
             loader = loaderManager.initLoader(NEW_ID, null, this);
         } else {
@@ -111,13 +110,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @NonNull
     @Override
-    public Loader<LinkedList<New>> onCreateLoader(int id, @Nullable Bundle args) {
+    public Loader<LinkedList<News>> onCreateLoader(int id, @Nullable Bundle args) {
         Log.d("TEST_LOG","start");
         return new NewListLoader(this);
     }
 
     @Override
-    public void onLoadFinished(@NonNull Loader<LinkedList<New>> loader, LinkedList<New> data) {
+    public void onLoadFinished(@NonNull Loader<LinkedList<News>> loader, LinkedList<News> data) {
         if(data != null && data.size() > 0) {
             Log.d("TEST_LOG","Load finish");
             String name = data.get(0).getTitle();
@@ -129,12 +128,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
-    public void onLoaderReset(@NonNull Loader<LinkedList<New>> loader) {
+    public void onLoaderReset(@NonNull Loader<LinkedList<News>> loader) {
 
     }
 
     @Override
-    public void onLoadCanceled(@NonNull Loader<LinkedList<New>> loader) {
+    public void onLoadCanceled(@NonNull Loader<LinkedList<News>> loader) {
 
     }
 }

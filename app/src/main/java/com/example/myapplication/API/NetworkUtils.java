@@ -38,7 +38,7 @@ public class NetworkUtils {
         Log.d("TEST_SIGUP",builtURI.toString());
         try {
             URL requestURL = new URL(builtURI.toString());
-            Log.d("TEST_SIGUP",builtURI.toString());
+            Log.d("TEST_SINGUP",builtURI.toString());
             return callAPI(requestURL, "POST");
         } catch (MalformedURLException e) {
             return null;
