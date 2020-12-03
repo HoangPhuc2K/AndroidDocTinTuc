@@ -1,10 +1,7 @@
 package com.example.myapplication.API;
 
 import android.net.Uri;
-import android.os.Build;
 import android.util.Log;
-
-import androidx.annotation.RequiresApi;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,12 +25,12 @@ public class NetworkUtils {
             return null;
         }
     }
-    public static String singUp(String username, String password) {
+    public static String singUp(String usermember, String password) {
         Uri builtURI = Uri.parse("http://10.0.2.2:8000/api/Member/SingUp?").buildUpon()
-                .appendQueryParameter("Usemember",username)
+                .appendQueryParameter("Usemember",usermember)
                 .appendQueryParameter("Password",password)
                 .appendQueryParameter("Email","adsd")
-                .appendQueryParameter("Fullname",username)
+                .appendQueryParameter("Fullname",usermember)
                 .build();
         Log.d("TEST_SIGUP",builtURI.toString());
         try {
@@ -67,7 +64,6 @@ public class NetworkUtils {
             // Get the InputStream.
             InputStream inputStream = urlConnection.getInputStream();
             result = convertISToString(inputStream);
-            Log.d("TEST_SIGUP",result);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
